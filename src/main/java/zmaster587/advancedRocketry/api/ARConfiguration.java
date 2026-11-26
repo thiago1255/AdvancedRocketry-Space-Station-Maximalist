@@ -430,6 +430,7 @@ public class ARConfiguration {
 		arConfig.terraformRequiresFluid = config.get(Configuration.CATEGORY_GENERAL, "TerraformerRequiresFluids", true, "Whether the Terraformer should consume fluids at all, independent of rate").getBoolean();
 		arConfig.terraformliquidRate = config.get(Configuration.CATEGORY_GENERAL, "TerraformerFluidConsumeRate", 40, "how many millibuckets/t are required to keep the terraformer running").getInt();
 		arConfig.allowTerraformNonAR = config.get(Configuration.CATEGORY_GENERAL, "allowTerraformingNonARWorlds", false, "If true dimensions not added by AR can be terraformed, including the overworld").getBoolean();
+		arConfig.allowFE = config.get(Configuration.CATEGORY_GENERAL, "allowFE", true, "If false, machines accept only EU (from IC2), denying FE/RF.").getBoolean();
 		arConfig.enableGravityController = config.get(Configuration.CATEGORY_GENERAL, "enableGravityMachine", true, "If false the gravity controller cannot be built or used").getBoolean();
 
 		//Oxygen
@@ -454,7 +455,7 @@ public class ARConfiguration {
 		arConfig.fuelPointsPerDilithium = config.get(STATION, "pointsPerDilithium", 500, "How many units of fuel should each Dilithium Crystal give to warp ships", 1, 1000).getInt();
 		arConfig.travelTimeMultiplier = (float)config.get(STATION, "warpTravelTime", 1f, "Multiplier for warp travel time").getDouble();
 
-        //Missions
+		//Missions
 		arConfig.asteroidMiningTimeMult = config.get(MISSION, "miningMissionTmeMultiplier", 1.0, "Multiplier changing how long a mining mission takes").getDouble();
 		arConfig.gasCollectionMult = config.get(MISSION, "gasMissionMultiplier", 1.0, "Multiplier for the amount of time gas collection missions take").getDouble();
 		harvestableGasses = config.getStringList("harvestableGasses", MISSION, new String[] {}, "list of fluid names that can be harvested as Gas from any gas giant");
@@ -1073,6 +1074,9 @@ public class ARConfiguration {
 
 	@ConfigProperty
 	public boolean enableGravityController;
+
+	@ConfigProperty
+	public boolean allowFE;
 
 	@ConfigProperty(needsSync=true)
 	public boolean planetsMustBeDiscovered;
